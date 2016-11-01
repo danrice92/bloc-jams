@@ -8,12 +8,7 @@ var animateTitle = function(title) {
 
 var animatePoints = function(points) {
     var revealPoint = function() {
-        for (p = 0; p < points.length; p++) {
-            points[p].style.opacity = 1;
-            points[p].style.transform = "scaleX(1) translateY(0)";
-            points[p].style.msTransform = "scaleX(1) translateY(0)";
-            points[p].style.WebkitTransform = "scaleX(1) translateY(0)";
-        }
+        forEach(points);
     };
     revealPoint();
 };
