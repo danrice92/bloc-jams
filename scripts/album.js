@@ -28,6 +28,28 @@ var albumMarconi = {
     ]
 };
 
+var albumGreenDay = {
+    title: 'Revolution Radio',
+    artist: 'Green Day',
+    label: 'Reprise Radio',
+    year: '2016',
+    albumArtUrl: 'assets/images/album_covers/22.png',
+    songs: [
+        { title: 'Somewhere Now', duration: '4:08' },
+        { title: 'Bang Bang', duration: '3:25' },
+        { title: 'Revolution Radio', duration: '3:00' },
+        { title: 'Say Goodbye', duration: '3:39' },
+        { title: 'Outlaws', duration: '5:02' },
+        { title: 'Bouncing Off the Wall', duration: '2:40' },
+        { title: 'Still Breathing', duration: '3:44' },
+        { title: 'Youngblood', duration: '2:32' },
+        { title: 'Too Dumb to Die', duration: '3:23' },
+        { title: 'Troubled Times', duration: '3:04' },
+        { title: 'Forever Now', duration: '6:52' },
+        { title: 'Ordinary World', duration: '3:00' }
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -40,13 +62,13 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 }
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-    
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -60,4 +82,14 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    
+    var albumArray = [albumPicasso, albumMarconi, albumGreenDay];
+    var i = 1;
+    albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albumArray[i]);
+        i++;
+        if (i == albumArray.length) {
+            i = 0;
+        }
+    });
 };
